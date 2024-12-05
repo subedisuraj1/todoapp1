@@ -9,11 +9,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  String text = "Simple Text";
-  void ChangeText() {
+  List<String> todoList = ["Drink Water", "Make Dinner", "Sleep"];
+  void addTodo({required String todoText}) {
     setState(() {
-      text = "hello World";
+      todoList.insert(0, todoText);
     });
+    Navigator.pop(context);
   }
 
   @override
@@ -29,13 +30,19 @@ class _MainScreenState extends State<MainScreen> {
           InkWell(
             onTap: () {
               showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return Container(
-                      child: AddTodo(),
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: Container(
+                      child: AddTodo(
+                        addTodo: addTodo,
+                      ),
                       height: 250,
-                    );
-                  },);
+                    ),
+                  );
+                },
+              );
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -44,7 +51,29 @@ class _MainScreenState extends State<MainScreen> {
           )
         ],
       ),
-      body: Container(),
+      body: ListView.builder(
+          itemCount: todoList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                todoList.removeAt(index);
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: Text("Mark as Done")),
+                      );
+                    });
+              },
+              title: Text(todoList[index]),
+            );
+          }),
     );
   }
 }

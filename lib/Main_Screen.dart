@@ -20,14 +20,14 @@ class _MainScreenState extends State<MainScreen> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Already exists"),
-              content: Text('Thiis todo already exists'),
+              title: const Text("Already exists"),
+              content: const Text('Thiis todo already exists'),
               actions: [
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Close"),
+                  child: const Text("Close"),
                 )
               ],
             );
@@ -63,8 +63,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey[900],
-        shape: CircleBorder(),
-        child: Icon(
+        shape: const CircleBorder(),
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
@@ -92,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
               color: Colors.blueGrey[900],
               height: 200,
               width: double.infinity,
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Todo App",
                   style: TextStyle(
@@ -104,8 +104,8 @@ class _MainScreenState extends State<MainScreen> {
               onTap: () {
                 launchUrl(Uri.parse("https://www.google.com"));
               },
-              leading: Icon(Icons.person),
-              title: Text(
+              leading: const Icon(Icons.person),
+              title: const Text(
                 "About Me",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -114,8 +114,8 @@ class _MainScreenState extends State<MainScreen> {
               onTap: () {
                 launchUrl(Uri.parse("https://www.google.com"));
               },
-              leading: Icon(Icons.email),
-              title: Text(
+              leading: const Icon(Icons.email),
+              title: const Text(
                 "Contact Me",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
